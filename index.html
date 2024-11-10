@@ -59,9 +59,9 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      border-radius: 9px;
+      border-radius: 9px 9px 0px 0px;
       margin-top: -3%;
-      background: white;
+      background: #ff9300;
       position: relative;
     }
 
@@ -72,7 +72,7 @@
     }
 
     .body {
-      background-color: #f5f5f5;
+      background-color: #ff9300;
       padding: 1%;
     }
 
@@ -119,7 +119,7 @@
       align-items: center;
       justify-content: space-between;
       margin: 10px;
-      background: white;
+      background: #e8911b;
       box-shadow: 0px 0px 3px;
       border-radius: 15px;
       transition: 0.2s;
@@ -154,7 +154,7 @@
           class="bg-gray-100 object-cover object-center w-full h-full block"
         />
       </div>
-      <p class="name">Feijoada pnz</p>
+      <p class="name">Feijoada PNZ</p>
       <p><i class="bi bi-geo-alt-fill"></i> Petrolina</p>
       <p class="h-spam"></p>
       <b>●Mais informações</b>
@@ -338,16 +338,446 @@
         <h2>Categorias</h2>
       </div>
       <div>
+
+        <!-- Pratos -->
+
+                <div class="categorias pratos-btn">
+                  <p><h2>PRATOS</h2></p>
+                  <img src="./images/feijoadaDelivery.png" alt="" />
+                </div>
+
+                <!-- Feijoada P -->
+                <div class="pratos feijoadaP" style="flex-direction: column-reverse;">
+                  <div style="display: flex; flex-direction: column; align-items: center;">
+                  <p><h5>Feijoada P</h5></p>
+                    <p><h6>Arroz, vinagrete, farofa e a feijoada.</h6></p><br>
+                  <p><h5>Preço: <l>R$20,00</l></h5></p><br>
+                    <div class="info info-feijoadaP">
+                      <div style="display: flex;
+                        flex-direction: column;
+                        align-items: center;">
+                      Algum comentário?
+                        <textarea id="coment-feijoadaP" style="max-height: 190px; margin: 1%; border: 2px solid gray; border-radius: 10px; width: 100%;" name="" id="" cols="30" rows="10"></textarea>
+                      </div>
+                      <div style="display: flex; justify-content: space-evenly; align-items: center;">
+                        <button class="btn" onclick="rem_feijoadaP()"><h2>-</h2></button>
+                        <p id="qtd-feijoadaP">0</p>
+                        <button class="btn" onclick="add_feijoadaP()"><h2>+</h2></button>
+                        <input id="pega-qtd-feijoadaP" value="0" min="0" type="number" hidden readonly>
+                        <p>Total: R$ <span id="total-feijoadaP">0,00</span></p>
+                        <input id="preco-feijoadaP" value="20" min="0" type="number" hidden readonly>
+                      </div>
+
+                    </div>
+                  </div>
+                  <img src="./images/feijoada.avif" alt="" />
+
+                  <script>
+
+                    //feijoadaP
+
+                    var qtd_feijoadaP = parseInt($('#pega-qtd-feijoadaP').val()) || 0;
+                    var preco_unitario_feijoadaP = parseFloat($('#preco-feijoadaP').val()); // preço unitário
+                    var preco_total_feijoadaP = qtd_feijoadaP * preco_unitario_feijoadaP; // preço total inicial
+
+
+
+                    $('.feijoadaP').click(function(){
+                      $('.info-feijoadaP').show();
+                    });
+
+                    // Atualiza o display inicial da quantidade e preço total
+                    $('#qtd-feijoadaP').text(qtd_feijoadaP);
+                    $('#total-feijoadaP').text(preco_total_feijoadaP.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }));
+
+
+                    // Função para adicionar
+                    function add_feijoadaP() {
+                      qtd_feijoadaP++;
+                      atualizarfeijoadaP();
+                    }
+
+                    // Função para remover
+                    function rem_feijoadaP() {
+                      if (qtd_feijoadaP > 0) {
+                        qtd_feijoadaP--;
+                        atualizarfeijoadaP();
+                      }
+                    }
+
+                    // Função para atualizar o total
+                    function atualizarfeijoadaP() {
+                      preco_total_feijoadaP = qtd_feijoadaP * preco_unitario_feijoadaP;
+                      $('#qtd-feijoadaP').text(qtd_feijoadaP);
+                      $('#total-feijoadaP').text(preco_total_feijoadaP.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }));
+
+                      // Verifica se o item 'feijoadaP' já foi escolhido
+                      let index = escolhidos.indexOf('feijoadaP');
+
+                      if (index === -1) { 
+                        // Se o item não estiver no array, adiciona as informações
+                        escolhidos.push('feijoadaP');
+                        qtdEscolhidos.push(qtd_feijoadaP);
+                        unitEscolhidos.push(preco_unitario_feijoadaP);
+                        totalEscolhidos.push(preco_total_feijoadaP);
+                      } else {
+                        // Se o item já estiver no array, substitui as informações
+                        qtdEscolhidos[index] = qtd_feijoadaP;
+                        totalEscolhidos[index] = preco_total_feijoadaP;
+                      }
+
+                      atualizarCarrinho()
+                    }
+
+                  </script>
+                </div>
+
+
+                <!-- Feijoada M -->
+                <div class="pratos feijoadaM" style="flex-direction: column-reverse;">
+                  <div style="display: flex; flex-direction: column; align-items: center;">
+                  <p><h5>Feijoada M</h5></p>
+                    <p><h6>Arroz, vinagrete, farofa e a feijoada.</h6></p><br>
+                  <p><h5>Preço: <l>R$45,00</l></h5></p><br>
+                    <div class="info info-feijoadaM">
+                      <div style="display: flex;
+                        flex-direction: column;
+                        align-items: center;">
+                      Algum comentário?
+                        <textarea id="coment-feijoadaM" style="max-height: 190px; margin: 1%; border: 2px solid gray; border-radius: 10px; width: 100%;" name="" id="" cols="30" rows="10"></textarea>
+                      </div>
+                      <div style="display: flex; justify-content: space-evenly; align-items: center;">
+                        <button class="btn" onclick="rem_feijoadaM()"><h2>-</h2></button>
+                        <p id="qtd-feijoadaM">0</p>
+                        <button class="btn" onclick="add_feijoadaM()"><h2>+</h2></button>
+                        <input id="pega-qtd-feijoadaM" value="0" min="0" type="number" hidden readonly>
+                        <p>Total: R$ <span id="total-feijoadaM">0,00</span></p>
+                        <input id="preco-feijoadaM" value="45" min="0" type="number" hidden readonly>
+                      </div>
+
+                    </div>
+                  </div>
+                  <img src="./images/feijoada.avif" alt="" />
+
+                  <script>
+
+                    //feijoadaM
+
+                    var qtd_feijoadaM = parseInt($('#pega-qtd-feijoadaM').val()) || 0;
+                    var preco_unitario_feijoadaM = parseFloat($('#preco-feijoadaM').val()); // preço unitário
+                    var preco_total_feijoadaM = qtd_feijoadaM * preco_unitario_feijoadaM; // preço total inicial
+
+
+
+                    $('.feijoadaM').click(function(){
+                      $('.info-feijoadaM').show();
+                    });
+
+                    // Atualiza o display inicial da quantidade e preço total
+                    $('#qtd-feijoadaM').text(qtd_feijoadaM);
+                    $('#total-feijoadaM').text(preco_total_feijoadaM.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }));
+
+
+                    // Função para adicionar
+                    function add_feijoadaM() {
+                      qtd_feijoadaM++;
+                      atualizarfeijoadaM();
+                    }
+
+                    // Função para remover
+                    function rem_feijoadaM() {
+                      if (qtd_feijoadaM > 0) {
+                        qtd_feijoadaM--;
+                        atualizarfeijoadaM();
+                      }
+                    }
+
+                    // Função para atualizar o total
+                    function atualizarfeijoadaM() {
+                      preco_total_feijoadaM = qtd_feijoadaM * preco_unitario_feijoadaM;
+                      $('#qtd-feijoadaM').text(qtd_feijoadaM);
+                      $('#total-feijoadaM').text(preco_total_feijoadaM.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }));
+
+                      // Verifica se o item 'feijoadaM' já foi escolhido
+                      let index = escolhidos.indexOf('feijoadaM');
+
+                      if (index === -1) { 
+                        // Se o item não estiver no array, adiciona as informações
+                        escolhidos.push('feijoadaM');
+                        qtdEscolhidos.push(qtd_feijoadaM);
+                        unitEscolhidos.push(preco_unitario_feijoadaM);
+                        totalEscolhidos.push(preco_total_feijoadaM);
+                      } else {
+                        // Se o item já estiver no array, substitui as informações
+                        qtdEscolhidos[index] = qtd_feijoadaM;
+                        totalEscolhidos[index] = preco_total_feijoadaM;
+                      }
+
+                      atualizarCarrinho();
+                    }
+
+                  </script>
+                </div>
+
+                <!-- Feijoada G -->
+                <div class="pratos feijoadaG" style="flex-direction: column-reverse;">
+                  <div style="display: flex; flex-direction: column; align-items: center;">
+                  <p><h5>Feijoada G</h5></p>
+                    <p><h6>Arroz, vinagrete, farofa e a feijoada.</h6></p><br>
+                  <p><h5>Preço: <l>R$60,00</l></h5></p><br>
+                    <div class="info info-feijoadaG">
+                      <div style="display: flex;
+                        flex-direction: column;
+                        align-items: center;">
+                      Algum comentário?
+                        <textarea id="coment-feijoadaG" style="max-height: 190px; margin: 1%; border: 2px solid gray; border-radius: 10px; width: 100%;" name="" id="" cols="30" rows="10"></textarea>
+                      </div>
+                      <div style="display: flex; justify-content: space-evenly; align-items: center;">
+                        <button class="btn" onclick="rem_feijoadaG()"><h2>-</h2></button>
+                        <p id="qtd-feijoadaG">0</p>
+                        <button class="btn" onclick="add_feijoadaG()"><h2>+</h2></button>
+                        <input id="pega-qtd-feijoadaG" value="0" min="0" type="number" hidden readonly>
+                        <p>Total: R$ <span id="total-feijoadaG">0,00</span></p>
+                        <input id="preco-feijoadaG" value="60" min="0" type="number" hidden readonly>
+                      </div>
+
+                    </div>
+                  </div>
+                  <img src="./images/feijoada.avif" alt="" />
+
+                  <script>
+
+                    //feijoadaG
+
+                    var qtd_feijoadaG = parseInt($('#pega-qtd-feijoadaG').val()) || 0;
+                    var preco_unitario_feijoadaG = parseFloat($('#preco-feijoadaG').val()); // preço unitário
+                    var preco_total_feijoadaG = qtd_feijoadaG * preco_unitario_feijoadaG; // preço total inicial
+
+
+
+                    $('.feijoadaG').click(function(){
+                      $('.info-feijoadaG').show();
+                    });
+
+                    // Atualiza o display inicial da quantidade e preço total
+                    $('#qtd-feijoadaG').text(qtd_feijoadaG);
+                    $('#total-feijoadaG').text(preco_total_feijoadaG.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }));
+
+
+                    // Função para adicionar
+                    function add_feijoadaG() {
+                      qtd_feijoadaG++;
+                      atualizarfeijoadaG();
+                    }
+
+                    // Função para remover
+                    function rem_feijoadaG() {
+                      if (qtd_feijoadaG > 0) {
+                        qtd_feijoadaG--;
+                        atualizarfeijoadaG();
+                      }
+                    }
+
+                    // Função para atualizar o total
+                    function atualizarfeijoadaG() {
+                      preco_total_feijoadaG = qtd_feijoadaG * preco_unitario_feijoadaG;
+                      $('#qtd-feijoadaG').text(qtd_feijoadaG);
+                      $('#total-feijoadaG').text(preco_total_feijoadaG.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }));
+
+                      // Verifica se o item 'feijoadaG' já foi escolhido
+                      let index = escolhidos.indexOf('feijoadaG');
+
+                      if (index === -1) { 
+                        // Se o item não estiver no array, adiciona as informações
+                        escolhidos.push('feijoadaG');
+                        qtdEscolhidos.push(qtd_feijoadaG);
+                        unitEscolhidos.push(preco_unitario_feijoadaG);
+                        totalEscolhidos.push(preco_total_feijoadaG);
+                      } else {
+                        // Se o item já estiver no array, substitui as informações
+                        qtdEscolhidos[index] = qtd_feijoadaG;
+                        totalEscolhidos[index] = preco_total_feijoadaG;
+                      }
+
+                      atualizarCarrinho()
+                    }
+
+                  </script>
+                </div>
+
+
+                <!-- Feijão de caldo P -->
+                <div class="pratos feijaoCaldoP" style="flex-direction: column-reverse;">
+                  <div style="display: flex; flex-direction: column; align-items: center;">
+                  <p><h5>Feijoão de Caldo P</h5></p>
+                    <p><h6>Arroz, vinagrete, farofa, feijão de caldo, e dois tipos de carne.</h6></p><br>
+                  <p><h5>Preço: <l>R$20,00</l></h5></p><br>
+                    <div class="info info-feijaoCaldoP">
+                    <button class="btn rounded border border-2" data-bs-toggle="modal" data-bs-target="#modalCaldoP">Escolher carne</button>
+
+                      <!-- Modal -->
+                      <div class="modal fade" id="modalCaldoP" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <div style="background: #e2e2e2; padding: 2%;">
+                                <h3>Tipos de carne</h3>
+                                <h6>Escolha até 2 opções</h6>
+                              </div>
+                              <div style="display: flex;
+                                align-items: center;
+                                justify-content: space-between;">
+                                <p>Frango assado</p>
+                                <img src="./images/frango assado.avif" alt="">
+                                <p>▬</p>0<p>✚</p>
+
+                              </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div style="display: flex;
+                        flex-direction: column;
+                        align-items: center;">
+                      Algum comentário?
+                        <textarea id="coment-feijaoCaldoP" style="max-height: 190px; margin: 1%; border: 2px solid gray; border-radius: 10px; width: 100%;" name="" id="" cols="30" rows="10"></textarea>
+                      </div>
+                      <div style="display: flex; justify-content: space-evenly; align-items: center;">
+                        <button class="btn" onclick="rem_feijaoCaldoP()"><h2>-</h2></button>
+                        <p id="qtd-feijaoCaldoP">0</p>
+                        <button class="btn" onclick="add_feijaoCaldoP()"><h2>+</h2></button>
+                        <input id="pega-qtd-feijaoCaldoP" value="0" min="0" type="number" hidden readonly>
+                        <p>Total: R$ <span id="total-feijaoCaldoP">0,00</span></p>
+                        <input id="preco-feijaoCaldoP" value="20" min="0" type="number" hidden readonly>
+                      </div>
+
+                    </div>
+                  </div>
+                  <img src="./images/feijao de caldo.avif" alt="" />
+
+                  <script>
+
+                    //feijaoCaldoP
+
+                    var qtd_feijaoCaldoP = parseInt($('#pega-qtd-feijaoCaldoP').val()) || 0;
+                    var preco_unitario_feijaoCaldoP = parseFloat($('#preco-feijaoCaldoP').val()); // preço unitário
+                    var preco_total_feijaoCaldoP = qtd_feijaoCaldoP * preco_unitario_feijaoCaldoP; // preço total inicial
+
+
+
+                    $('.feijaoCaldoP').click(function(){
+                      $('.info-feijaoCaldoP').show();
+                    });
+
+                    // Atualiza o display inicial da quantidade e preço total
+                    $('#qtd-feijaoCaldoP').text(qtd_feijaoCaldoP);
+                    $('#total-feijaoCaldoP').text(preco_total_feijaoCaldoP.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }));
+
+
+                    // Função para adicionar
+                    function add_feijaoCaldoP() {
+                      qtd_feijaoCaldoP++;
+                      atualizarfeijaoCaldoP();
+                    }
+
+                    // Função para remover
+                    function rem_feijaoCaldoP() {
+                      if (qtd_feijaoCaldoP > 0) {
+                        qtd_feijaoCaldoP--;
+                        atualizarfeijaoCaldoP();
+                      }
+                    }
+
+                    // Função para atualizar o total
+                    function atualizarfeijaoCaldoP() {
+                      preco_total_feijaoCaldoP = qtd_feijaoCaldoP * preco_unitario_feijaoCaldoP;
+                      $('#qtd-feijaoCaldoP').text(qtd_feijaoCaldoP);
+                      $('#total-feijaoCaldoP').text(preco_total_feijaoCaldoP.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }));
+
+                      // Verifica se o item 'feijaoCaldoP' já foi escolhido
+                      let index = escolhidos.indexOf('feijaoCaldoP');
+
+                      if (index === -1) { 
+                        // Se o item não estiver no array, adiciona as informações
+                        escolhidos.push('feijaoCaldoP');
+                        qtdEscolhidos.push(qtd_feijaoCaldoP);
+                        unitEscolhidos.push(preco_unitario_feijaoCaldoP);
+                        totalEscolhidos.push(preco_total_feijaoCaldoP);
+                      } else {
+                        // Se o item já estiver no array, substitui as informações
+                        qtdEscolhidos[index] = qtd_feijaoCaldoP;
+                        totalEscolhidos[index] = preco_total_feijaoCaldoP;
+                      }
+
+                      atualizarCarrinho();
+        }
+
+                  </script>
+                </div>
+
+
+                <div class="fixed-div" style="position: fixed;
+                  bottom: 10px; /* Distância da parte inferior da tela */
+                  right: 10px;  /* Distância da borda direita */
+                  padding: 2%;
+                  background-color: #333;
+                  color: #fff;
+                  border-radius: 5px;" data-bs-toggle="modal" data-bs-target="#modalCarrinho">
+                  <i class="bi bi-cart-fill" style="opacity: 100%;"></i><p id="total"></p>
+                </div>
+
+                <!-- Modal Carrinho -->
+                <div class="modal fade" id="modalCarrinho" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th scope="col">Produto</th>
+                              <th scope="col">Quanti dade</th>
+                              <th scope="col">Valor Unit.</th>
+                              <th scope="col">Valor total</th>
+                            </tr>
+                          </thead>
+                          <tbody class="printCarrinho">
+                          </tbody>
+                        </table>
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+        
         <div class="categorias bebidas-btn">
           <p><h2>BEBIDAS</h2></p>
-          <img src="./images/bebidas.avif" alt="" />
+          <img src="./images/bebidasDelivery.png" alt="" />
         </div>
 
         <!-- Refrigerante lata -->
         <div class="bebidas refri-lata" style="flex-direction: column-reverse;">
           <div style="display: flex; flex-direction: column; align-items: center;">
           <p><h5>Refrigerante lata</h5></p><br>
-          <p><h5>Preço: <l style="color: #10b981">R$6,00</l></h5></p><br>
+          <p><h5>Preço: <l>R$6,00</l></h5></p><br>
             <div class="info info-refri-lata">
               <div style="display: flex;
                 flex-direction: column;
@@ -430,7 +860,7 @@
         <div class="bebidas coca1l" style="flex-direction: column-reverse;">
           <div style="display: flex; flex-direction: column; align-items: center;">
           <p><h5>Coca cola 1L</h5></p><br>
-          <p><h5>Preço: <l style="color: #10b981">R$10,00</l></h5></p><br>
+          <p><h5>Preço: <l>R$10,00</l></h5></p><br>
             <div class="info info-coca1l">
               <div style="display: flex;
                 flex-direction: column;
@@ -517,7 +947,7 @@
         <div class="bebidas guarana1l" style="flex-direction: column-reverse;">
           <div style="display: flex; flex-direction: column; align-items: center;">
           <p><h5>Guaraná 1L</h5></p><br>
-          <p><h5>Preço: <l style="color: #10b981">R$10,00</l></h5></p><br>
+          <p><h5>Preço: <l>R$10,00</l></h5></p><br>
             <div class="info info-guarana1l">
               <div style="display: flex;
                 flex-direction: column;
@@ -602,7 +1032,7 @@
         <div class="bebidas coca2l" style="flex-direction: column-reverse;">
           <div style="display: flex; flex-direction: column; align-items: center;">
           <p><h5>Coca cola 2L</h5></p><br>
-          <p><h5>Preço: <l style="color: #10b981">R$14,00</l></h5></p><br>
+          <p><h5>Preço: <l>R$14,00</l></h5></p><br>
             <div class="info info-coca2l">
               <div style="display: flex;
                 flex-direction: column;
@@ -687,7 +1117,7 @@
         <div class="bebidas guarana2l" style="flex-direction: column-reverse;">
           <div style="display: flex; flex-direction: column; align-items: center;">
           <p><h5>Guaraná 2L</h5></p><br>
-          <p><h5>Preço: <l style="color: #10b981">R$14,00</l></h5></p><br>
+          <p><h5>Preço: <l>R$14,00</l></h5></p><br>
             <div class="info info-guarana2l">
               <div style="display: flex;
                 flex-direction: column;
@@ -766,14 +1196,14 @@
             }
 
           </script>
-        </div>
+      </div>
 
 
         <!-- Cajuína 600ml -->
         <div class="bebidas cajuina600" style="flex-direction: column-reverse;">
           <div style="display: flex; flex-direction: column; align-items: center;">
           <p><h5>Cajuína 600ml</h5></p><br>
-          <p><h5>Preço: <l style="color: #10b981">R$7,00</l></h5></p><br>
+          <p><h5>Preço: <l>R$7,00</l></h5></p><br>
             <div class="info info-cajuina600">
               <div style="display: flex;
                 flex-direction: column;
@@ -852,429 +1282,10 @@
             }
 
           </script>
+          </div>
         </div>
 
-        <!-- Pratos -->
         
-        <div class="categorias pratos-btn">
-          <p><h2>PRATOS</h2></p>
-          <img src="./images/pratos.avif" alt="" />
-        </div>
-
-        <!-- Feijoada P -->
-        <div class="pratos feijoadaP" style="flex-direction: column-reverse;">
-          <div style="display: flex; flex-direction: column; align-items: center;">
-          <p><h5>Feijoada P</h5></p>
-            <p><h6>Arroz, vinagrete, farofa e a feijoada.</h6></p><br>
-          <p><h5>Preço: <l style="color: #10b981">R$20,00</l></h5></p><br>
-            <div class="info info-feijoadaP">
-              <div style="display: flex;
-                flex-direction: column;
-                align-items: center;">
-              Algum comentário?
-                <textarea id="coment-feijoadaP" style="max-height: 190px; margin: 1%; border: 2px solid gray; border-radius: 10px; width: 100%;" name="" id="" cols="30" rows="10"></textarea>
-              </div>
-              <div style="display: flex; justify-content: space-evenly; align-items: center;">
-                <button class="btn" onclick="rem_feijoadaP()"><h2>-</h2></button>
-                <p id="qtd-feijoadaP">0</p>
-                <button class="btn" onclick="add_feijoadaP()"><h2>+</h2></button>
-                <input id="pega-qtd-feijoadaP" value="0" min="0" type="number" hidden readonly>
-                <p>Total: R$ <span id="total-feijoadaP">0,00</span></p>
-                <input id="preco-feijoadaP" value="20" min="0" type="number" hidden readonly>
-              </div>
-
-            </div>
-          </div>
-          <img src="./images/feijoada.avif" alt="" />
-
-          <script>
-
-            //feijoadaP
-
-            var qtd_feijoadaP = parseInt($('#pega-qtd-feijoadaP').val()) || 0;
-            var preco_unitario_feijoadaP = parseFloat($('#preco-feijoadaP').val()); // preço unitário
-            var preco_total_feijoadaP = qtd_feijoadaP * preco_unitario_feijoadaP; // preço total inicial
-
-
-
-            $('.feijoadaP').click(function(){
-              $('.info-feijoadaP').show();
-            });
-
-            // Atualiza o display inicial da quantidade e preço total
-            $('#qtd-feijoadaP').text(qtd_feijoadaP);
-            $('#total-feijoadaP').text(preco_total_feijoadaP.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }));
-
-
-            // Função para adicionar
-            function add_feijoadaP() {
-              qtd_feijoadaP++;
-              atualizarfeijoadaP();
-            }
-
-            // Função para remover
-            function rem_feijoadaP() {
-              if (qtd_feijoadaP > 0) {
-                qtd_feijoadaP--;
-                atualizarfeijoadaP();
-              }
-            }
-
-            // Função para atualizar o total
-            function atualizarfeijoadaP() {
-              preco_total_feijoadaP = qtd_feijoadaP * preco_unitario_feijoadaP;
-              $('#qtd-feijoadaP').text(qtd_feijoadaP);
-              $('#total-feijoadaP').text(preco_total_feijoadaP.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }));
-
-              // Verifica se o item 'feijoadaP' já foi escolhido
-              let index = escolhidos.indexOf('feijoadaP');
-
-              if (index === -1) { 
-                // Se o item não estiver no array, adiciona as informações
-                escolhidos.push('feijoadaP');
-                qtdEscolhidos.push(qtd_feijoadaP);
-                unitEscolhidos.push(preco_unitario_feijoadaP);
-                totalEscolhidos.push(preco_total_feijoadaP);
-              } else {
-                // Se o item já estiver no array, substitui as informações
-                qtdEscolhidos[index] = qtd_feijoadaP;
-                totalEscolhidos[index] = preco_total_feijoadaP;
-              }
-              
-              atualizarCarrinho()
-            }
-
-          </script>
-        </div>
-
-
-        <!-- Feijoada M -->
-        <div class="pratos feijoadaM" style="flex-direction: column-reverse;">
-          <div style="display: flex; flex-direction: column; align-items: center;">
-          <p><h5>Feijoada M</h5></p>
-            <p><h6>Arroz, vinagrete, farofa e a feijoada.</h6></p><br>
-          <p><h5>Preço: <l style="color: #10b981">R$45,00</l></h5></p><br>
-            <div class="info info-feijoadaM">
-              <div style="display: flex;
-                flex-direction: column;
-                align-items: center;">
-              Algum comentário?
-                <textarea id="coment-feijoadaM" style="max-height: 190px; margin: 1%; border: 2px solid gray; border-radius: 10px; width: 100%;" name="" id="" cols="30" rows="10"></textarea>
-              </div>
-              <div style="display: flex; justify-content: space-evenly; align-items: center;">
-                <button class="btn" onclick="rem_feijoadaM()"><h2>-</h2></button>
-                <p id="qtd-feijoadaM">0</p>
-                <button class="btn" onclick="add_feijoadaM()"><h2>+</h2></button>
-                <input id="pega-qtd-feijoadaM" value="0" min="0" type="number" hidden readonly>
-                <p>Total: R$ <span id="total-feijoadaM">0,00</span></p>
-                <input id="preco-feijoadaM" value="45" min="0" type="number" hidden readonly>
-              </div>
-
-            </div>
-          </div>
-          <img src="./images/feijoada.avif" alt="" />
-
-          <script>
-
-            //feijoadaM
-
-            var qtd_feijoadaM = parseInt($('#pega-qtd-feijoadaM').val()) || 0;
-            var preco_unitario_feijoadaM = parseFloat($('#preco-feijoadaM').val()); // preço unitário
-            var preco_total_feijoadaM = qtd_feijoadaM * preco_unitario_feijoadaM; // preço total inicial
-
-
-
-            $('.feijoadaM').click(function(){
-              $('.info-feijoadaM').show();
-            });
-
-            // Atualiza o display inicial da quantidade e preço total
-            $('#qtd-feijoadaM').text(qtd_feijoadaM);
-            $('#total-feijoadaM').text(preco_total_feijoadaM.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }));
-
-
-            // Função para adicionar
-            function add_feijoadaM() {
-              qtd_feijoadaM++;
-              atualizarfeijoadaM();
-            }
-
-            // Função para remover
-            function rem_feijoadaM() {
-              if (qtd_feijoadaM > 0) {
-                qtd_feijoadaM--;
-                atualizarfeijoadaM();
-              }
-            }
-
-            // Função para atualizar o total
-            function atualizarfeijoadaM() {
-              preco_total_feijoadaM = qtd_feijoadaM * preco_unitario_feijoadaM;
-              $('#qtd-feijoadaM').text(qtd_feijoadaM);
-              $('#total-feijoadaM').text(preco_total_feijoadaM.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }));
-
-              // Verifica se o item 'feijoadaM' já foi escolhido
-              let index = escolhidos.indexOf('feijoadaM');
-
-              if (index === -1) { 
-                // Se o item não estiver no array, adiciona as informações
-                escolhidos.push('feijoadaM');
-                qtdEscolhidos.push(qtd_feijoadaM);
-                unitEscolhidos.push(preco_unitario_feijoadaM);
-                totalEscolhidos.push(preco_total_feijoadaM);
-              } else {
-                // Se o item já estiver no array, substitui as informações
-                qtdEscolhidos[index] = qtd_feijoadaM;
-                totalEscolhidos[index] = preco_total_feijoadaM;
-              }
-              
-              atualizarCarrinho();
-            }
-
-          </script>
-        </div>
-
-        <!-- Feijoada G -->
-        <div class="pratos feijoadaG" style="flex-direction: column-reverse;">
-          <div style="display: flex; flex-direction: column; align-items: center;">
-          <p><h5>Feijoada G</h5></p>
-            <p><h6>Arroz, vinagrete, farofa e a feijoada.</h6></p><br>
-          <p><h5>Preço: <l style="color: #10b981">R$60,00</l></h5></p><br>
-            <div class="info info-feijoadaG">
-              <div style="display: flex;
-                flex-direction: column;
-                align-items: center;">
-              Algum comentário?
-                <textarea id="coment-feijoadaG" style="max-height: 190px; margin: 1%; border: 2px solid gray; border-radius: 10px; width: 100%;" name="" id="" cols="30" rows="10"></textarea>
-              </div>
-              <div style="display: flex; justify-content: space-evenly; align-items: center;">
-                <button class="btn" onclick="rem_feijoadaG()"><h2>-</h2></button>
-                <p id="qtd-feijoadaG">0</p>
-                <button class="btn" onclick="add_feijoadaG()"><h2>+</h2></button>
-                <input id="pega-qtd-feijoadaG" value="0" min="0" type="number" hidden readonly>
-                <p>Total: R$ <span id="total-feijoadaG">0,00</span></p>
-                <input id="preco-feijoadaG" value="60" min="0" type="number" hidden readonly>
-              </div>
-
-            </div>
-          </div>
-          <img src="./images/feijoada.avif" alt="" />
-
-          <script>
-
-            //feijoadaG
-
-            var qtd_feijoadaG = parseInt($('#pega-qtd-feijoadaG').val()) || 0;
-            var preco_unitario_feijoadaG = parseFloat($('#preco-feijoadaG').val()); // preço unitário
-            var preco_total_feijoadaG = qtd_feijoadaG * preco_unitario_feijoadaG; // preço total inicial
-
-
-
-            $('.feijoadaG').click(function(){
-              $('.info-feijoadaG').show();
-            });
-
-            // Atualiza o display inicial da quantidade e preço total
-            $('#qtd-feijoadaG').text(qtd_feijoadaG);
-            $('#total-feijoadaG').text(preco_total_feijoadaG.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }));
-
-
-            // Função para adicionar
-            function add_feijoadaG() {
-              qtd_feijoadaG++;
-              atualizarfeijoadaG();
-            }
-
-            // Função para remover
-            function rem_feijoadaG() {
-              if (qtd_feijoadaG > 0) {
-                qtd_feijoadaG--;
-                atualizarfeijoadaG();
-              }
-            }
-
-            // Função para atualizar o total
-            function atualizarfeijoadaG() {
-              preco_total_feijoadaG = qtd_feijoadaG * preco_unitario_feijoadaG;
-              $('#qtd-feijoadaG').text(qtd_feijoadaG);
-              $('#total-feijoadaG').text(preco_total_feijoadaG.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }));
-
-              // Verifica se o item 'feijoadaG' já foi escolhido
-              let index = escolhidos.indexOf('feijoadaG');
-
-              if (index === -1) { 
-                // Se o item não estiver no array, adiciona as informações
-                escolhidos.push('feijoadaG');
-                qtdEscolhidos.push(qtd_feijoadaG);
-                unitEscolhidos.push(preco_unitario_feijoadaG);
-                totalEscolhidos.push(preco_total_feijoadaG);
-              } else {
-                // Se o item já estiver no array, substitui as informações
-                qtdEscolhidos[index] = qtd_feijoadaG;
-                totalEscolhidos[index] = preco_total_feijoadaG;
-              }
-              
-              atualizarCarrinho()
-            }
-
-          </script>
-        </div>
-
-
-        <!-- Feijão de caldo P -->
-        <div class="pratos feijaoCaldoP" style="flex-direction: column-reverse;">
-          <div style="display: flex; flex-direction: column; align-items: center;">
-          <p><h5>Feijoão de Caldo P</h5></p>
-            <p><h6>Arroz, vinagrete, farofa, feijão de caldo, e dois tipos de carne.</h6></p><br>
-          <p><h5>Preço: <l style="color: #10b981">R$20,00</l></h5></p><br>
-            <div class="info info-feijaoCaldoP">
-            <button class="btn rounded border border-2" data-bs-toggle="modal" data-bs-target="#modalCaldoP">Escolher carne</button>
-
-              <!-- Modal -->
-              <div class="modal fade" id="modalCaldoP" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      <div style="background: #e2e2e2; padding: 2%;">
-                        <h3>Tipos de carne</h3>
-                        <h6>Escolha até 2 opções</h6>
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <div style="display: flex;
-                flex-direction: column;
-                align-items: center;">
-              Algum comentário?
-                <textarea id="coment-feijaoCaldoP" style="max-height: 190px; margin: 1%; border: 2px solid gray; border-radius: 10px; width: 100%;" name="" id="" cols="30" rows="10"></textarea>
-              </div>
-              <div style="display: flex; justify-content: space-evenly; align-items: center;">
-                <button class="btn" onclick="rem_feijaoCaldoP()"><h2>-</h2></button>
-                <p id="qtd-feijaoCaldoP">0</p>
-                <button class="btn" onclick="add_feijaoCaldoP()"><h2>+</h2></button>
-                <input id="pega-qtd-feijaoCaldoP" value="0" min="0" type="number" hidden readonly>
-                <p>Total: R$ <span id="total-feijaoCaldoP">0,00</span></p>
-                <input id="preco-feijaoCaldoP" value="20" min="0" type="number" hidden readonly>
-              </div>
-
-            </div>
-          </div>
-          <img src="./images/feijao de caldo.avif" alt="" />
-
-          <script>
-
-            //feijaoCaldoP
-
-            var qtd_feijaoCaldoP = parseInt($('#pega-qtd-feijaoCaldoP').val()) || 0;
-            var preco_unitario_feijaoCaldoP = parseFloat($('#preco-feijaoCaldoP').val()); // preço unitário
-            var preco_total_feijaoCaldoP = qtd_feijaoCaldoP * preco_unitario_feijaoCaldoP; // preço total inicial
-
-
-
-            $('.feijaoCaldoP').click(function(){
-              $('.info-feijaoCaldoP').show();
-            });
-
-            // Atualiza o display inicial da quantidade e preço total
-            $('#qtd-feijaoCaldoP').text(qtd_feijaoCaldoP);
-            $('#total-feijaoCaldoP').text(preco_total_feijaoCaldoP.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }));
-
-
-            // Função para adicionar
-            function add_feijaoCaldoP() {
-              qtd_feijaoCaldoP++;
-              atualizarfeijaoCaldoP();
-            }
-
-            // Função para remover
-            function rem_feijaoCaldoP() {
-              if (qtd_feijaoCaldoP > 0) {
-                qtd_feijaoCaldoP--;
-                atualizarfeijaoCaldoP();
-              }
-            }
-
-            // Função para atualizar o total
-            function atualizarfeijaoCaldoP() {
-              preco_total_feijaoCaldoP = qtd_feijaoCaldoP * preco_unitario_feijaoCaldoP;
-              $('#qtd-feijaoCaldoP').text(qtd_feijaoCaldoP);
-              $('#total-feijaoCaldoP').text(preco_total_feijaoCaldoP.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }));
-
-              // Verifica se o item 'feijaoCaldoP' já foi escolhido
-              let index = escolhidos.indexOf('feijaoCaldoP');
-
-              if (index === -1) { 
-                // Se o item não estiver no array, adiciona as informações
-                escolhidos.push('feijaoCaldoP');
-                qtdEscolhidos.push(qtd_feijaoCaldoP);
-                unitEscolhidos.push(preco_unitario_feijaoCaldoP);
-                totalEscolhidos.push(preco_total_feijaoCaldoP);
-              } else {
-                // Se o item já estiver no array, substitui as informações
-                qtdEscolhidos[index] = qtd_feijaoCaldoP;
-                totalEscolhidos[index] = preco_total_feijaoCaldoP;
-              }
-              
-              atualizarCarrinho();
-}
-
-          </script>
-        </div>
-
-
-        <div class="fixed-div" style="position: fixed;
-          bottom: 10px; /* Distância da parte inferior da tela */
-          right: 10px;  /* Distância da borda direita */
-          padding: 2%;
-          background-color: #333;
-          color: #fff;
-          border-radius: 5px;" data-bs-toggle="modal" data-bs-target="#modalCarrinho">
-          <i class="bi bi-cart-fill" style="opacity: 100%;"></i><p id="total"></p>
-        </div>
-
-        <!-- Modal Carrinho -->
-        <div class="modal fade" id="modalCarrinho" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Produto</th>
-                      <th scope="col">Quanti dade</th>
-                      <th scope="col">Valor Unit.</th>
-                      <th scope="col">Valor total</th>
-                    </tr>
-                  </thead>
-                  <tbody class="printCarrinho">
-                  </tbody>
-                </table>
-                
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-      </div>
     </section>
     <section class="footer">
     </section>
@@ -1335,16 +1346,31 @@
         }else{
           $('.bebidas').show();
           b_open = true;
+
+          $('html, body').animate({
+            scrollTop: $('.bebidas').offset().top // Define o destino do scroll
+          }, 400); // 400 milissegundos para um scroll suave
+          
         }
+
+        if(b_open){
+        
+      }
+      
       });
 
       $('.pratos-btn').click(function(){
         if(p_open){
           $('.pratos').hide();
-          p_open = false;
+          p_open = false;  
         }else{
           $('.pratos').show();
           p_open = true;
+          
+          $('html, body').animate({
+            scrollTop: $('.pratos').offset().top // Define o destino do scroll
+          }, 400); // 400 milissegundos para um scroll suave
+        
         }
       });
 
