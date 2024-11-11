@@ -311,6 +311,8 @@
         var qtdEscolhidos = [];
         var unitEscolhidos = [];
         var totalEscolhidos = [];
+        var tipoCarne = [];
+        
 
         var dia = new Date().getDay(); // Obtém o dia da semana (0 = domingo, 6 = sábado)
         var hora = new Date().getHours();
@@ -633,13 +635,81 @@
                                 justify-content: space-between;">
                                 <p>Frango assado</p>
                                 <img src="./images/frango assado.avif" alt="">
-                                <p>▬</p>0<p>✚</p>
+                                <button class="btn" onclick="rem_frango1()">▬</button><p class="qtd-frango1">0</p><button class="btn" onclick="add_frango1()" >✚</button>
+                                <input type="number" hidden readonly value="0" id="pega-qtd-frango1">
 
+                                <script>
+                                  var qtd_frango1 = parseInt($('#pega-qtd-frango1').val()) || 0;
+                                  function rem_frango1(){
+                                    if (qtd_frango1 > 0) {
+                                      qtd_frango1--;
+                                    }
+                                    atualizarFrango1()
+                                  }
+
+                                  function add_frango1(){
+                                    if(qtd_frango1 < 2){
+                                      qtd_frango1++;
+                                    }
+                                      atualizarFrango1();
+                                  }
+
+                                  function atualizarFrango1() {
+                                    $('.qtd-frango1').html(qtd_frango1);
+                                    // Verifica se o item 'feijaoCaldoP' já foi escolhido
+                                    let index = escolhidos.indexOf('Feijao de Caldo P');
+                                    tipoCarne[index] = [
+                                      {
+                                        nome: 'Frango assado',
+                                        qtd: qtd_frango1
+                                      }
+                                    ]
+                                  }
+                                </script>
+                                
+                              </div>
+                              <div style="display: flex;
+                                align-items: center;
+                                justify-content: space-between;">
+                                <p>Frango ao molho</p>
+                                <img src="./images/frango ao molho.avif" alt="">
+                                <button class="btn" onclick="rem_frangomolho1()">▬</button><p class="qtd-frangomolho1">0</p><button class="btn" onclick="add_frangomolho1()" >✚</button>
+                                <input type="number" hidden readonly value="0" id="pega-qtd-frangomolho1">
+
+                                <script>
+                                  var qtd_frangomolho1 = parseInt($('#pega-qtd-frangomolho1').val()) || 0;
+                                  function rem_frangomolho1(){
+                                    if (qtd_frangomolho1 > 0) {
+                                      qtd_frangomolho1--;
+                                    }
+                                    atualizarFrangomolho1()
+                                  }
+
+                                  function add_frangomolho1(){
+                                    if(qtd_frangomolho1 < 2){
+                                      qtd_frangomolho1++;
+                                    }
+                                        atualizarFrangomolho1();
+                                  }
+
+                                  function atualizarFrangomolho1() {
+                                    $('.qtd-frangomolho1').html(qtd_frangomolho1);
+                                    // Verifica se o item 'feijaoCaldoP' já foi escolhido
+                                    let index = escolhidos.indexOf('Feijao de Caldo P');
+                                    tipoCarne[index] = [
+                                      {
+                                        nome: 'Frango ao molho',
+                                        qtd: qtd_frangomolho1
+                                      }
+                                    ]
+                                  }
+                                </script>
+                                
                               </div>
                             </div>
                             <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn-primary">Save changes</button>
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                              <button type="button" class="btn btn-primary">Adicionar</button>
                             </div>
                           </div>
                         </div>
@@ -668,58 +738,60 @@
 
                     //feijaoCaldoP
 
-                    var qtd_feijaoCaldoP = parseInt($('#pega-qtd-feijaoCaldoP').val()) || 0;
-                    var preco_unitario_feijaoCaldoP = parseFloat($('#preco-feijaoCaldoP').val()); // preço unitário
-                    var preco_total_feijaoCaldoP = qtd_feijaoCaldoP * preco_unitario_feijaoCaldoP; // preço total inicial
+                      var qtd_feijaoCaldoP = parseInt($('#pega-qtd-feijaoCaldoP').val()) || 0;
+                      var preco_unitario_feijaoCaldoP = parseFloat($('#preco-feijaoCaldoP').val()); // preço unitário
+                      var preco_total_feijaoCaldoP = qtd_feijaoCaldoP * preco_unitario_feijaoCaldoP; // preço total inicial
 
 
 
-                    $('.feijaoCaldoP').click(function(){
-                      $('.info-feijaoCaldoP').show();
-                    });
+                      $('.feijaoCaldoP').click(function(){
+                        $('.info-feijaoCaldoP').show();
+                      });
 
-                    // Atualiza o display inicial da quantidade e preço total
-                    $('#qtd-feijaoCaldoP').text(qtd_feijaoCaldoP);
-                    $('#total-feijaoCaldoP').text(preco_total_feijaoCaldoP.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }));
-
-
-                    // Função para adicionar
-                    function add_feijaoCaldoP() {
-                      qtd_feijaoCaldoP++;
-                      atualizarfeijaoCaldoP();
-                    }
-
-                    // Função para remover
-                    function rem_feijaoCaldoP() {
-                      if (qtd_feijaoCaldoP > 0) {
-                        qtd_feijaoCaldoP--;
-                        atualizarfeijaoCaldoP();
-                      }
-                    }
-
-                    // Função para atualizar o total
-                    function atualizarfeijaoCaldoP() {
-                      preco_total_feijaoCaldoP = qtd_feijaoCaldoP * preco_unitario_feijaoCaldoP;
+                      // Atualiza o display inicial da quantidade e preço total
                       $('#qtd-feijaoCaldoP').text(qtd_feijaoCaldoP);
                       $('#total-feijaoCaldoP').text(preco_total_feijaoCaldoP.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }));
 
-                      // Verifica se o item 'feijaoCaldoP' já foi escolhido
-                      let index = escolhidos.indexOf('feijaoCaldoP');
 
-                      if (index === -1) { 
-                        // Se o item não estiver no array, adiciona as informações
-                        escolhidos.push('feijaoCaldoP');
-                        qtdEscolhidos.push(qtd_feijaoCaldoP);
-                        unitEscolhidos.push(preco_unitario_feijaoCaldoP);
-                        totalEscolhidos.push(preco_total_feijaoCaldoP);
-                      } else {
-                        // Se o item já estiver no array, substitui as informações
-                        qtdEscolhidos[index] = qtd_feijaoCaldoP;
-                        totalEscolhidos[index] = preco_total_feijaoCaldoP;
+                      // Função para adicionar
+                      function add_feijaoCaldoP() {
+                        qtd_feijaoCaldoP++;
+                        atualizarfeijaoCaldoP();
                       }
 
-                      atualizarCarrinho();
-        }
+                      // Função para remover
+                      function rem_feijaoCaldoP() {
+                        if (qtd_feijaoCaldoP > 0) {
+                          qtd_feijaoCaldoP--;
+                          atualizarfeijaoCaldoP();
+                        }
+                      }
+
+                    
+
+                      // Função para atualizar o total
+                      function atualizarfeijaoCaldoP() {
+                        preco_total_feijaoCaldoP = qtd_feijaoCaldoP * preco_unitario_feijaoCaldoP;
+                        $('#qtd-feijaoCaldoP').text(qtd_feijaoCaldoP);
+                        $('#total-feijaoCaldoP').text(preco_total_feijaoCaldoP.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }));
+
+                        // Verifica se o item 'feijaoCaldoP' já foi escolhido
+                        let index = escolhidos.indexOf('Feijao de Caldo P');
+
+                        if (index === -1) { 
+                          // Se o item não estiver no array, adiciona as informações
+                          escolhidos.push('Feijao de Caldo P');
+                          qtdEscolhidos.push(qtd_feijaoCaldoP);
+                          unitEscolhidos.push(preco_unitario_feijaoCaldoP);
+                          totalEscolhidos.push(preco_total_feijaoCaldoP);
+                        } else {
+                          // Se o item já estiver no array, substitui as informações
+                          qtdEscolhidos[index] = qtd_feijaoCaldoP;
+                          totalEscolhidos[index] = preco_total_feijaoCaldoP;
+                        }
+
+                        atualizarCarrinho()
+                      }
 
                   </script>
                 </div>
@@ -1293,7 +1365,7 @@
     <script>
 
       function atualizarCarrinho(){
-        total = preco_total_coca1l + preco_total_refri_lata + preco_total_coca2l + preco_total_guarana1l + preco_total_guarana2l + preco_total_cajuina600;
+        total = preco_total_coca1l + preco_total_refri_lata + preco_total_coca2l + preco_total_guarana1l + preco_total_guarana2l + preco_total_cajuina600 + preco_total_feijoadaP + preco_total_feijoadaM + preco_total_feijoadaG + preco_total_feijaoCaldoP;
         $('#total').html(total.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }));
 
         // Inicializa uma variável para acumular as linhas da tabela
