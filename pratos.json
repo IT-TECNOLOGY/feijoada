@@ -1,0 +1,30 @@
+[
+  {
+    "tipo": "prato",
+    "prato": "Feijoada P",
+    "descricao": "Feijoada com carne de porco, arroz, farofa e batatas fritas",
+    "preco": 20.0,
+    "imagem": "./images/feijoada.avif"
+  },
+  {
+    "tipo": "prato",
+    "prato": "Feijoada M",
+    "descricao": "Feijoada com carne de porco, arroz, farofa e batatas fritas",
+    "preco": 40.0,
+    "imagem": "./images/feijoada.avif"
+  },
+  {
+    "tipo": "prato",
+    "prato": "Feijoada G",
+    "descricao": "Feijoada com carne de porco, arroz, farofa e batatas fritas",
+    "preco": 60.0,
+    "imagem": "./images/feijoada.avif"
+  },
+  {
+    "tipo": "bebida",
+    "prato": "Refrigerante de lata",
+    "descricao": "",
+    "preco": 7.0,
+    "imagem": "./images/bebidas.avif"
+  }
+]
